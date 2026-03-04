@@ -1,12 +1,12 @@
-"use client"
+'use client'
 
-import * as React from "react"
-import { X } from "lucide-react"
+import * as React from 'react'
+import { X } from 'lucide-react'
 
-import { cn } from "@/lib/utils"
-import { useToast } from "@/components/ui/use-toast"
+import { cn } from '@/lib/utils'
+import { useToast } from '@/components/ui/use-toast'
 
-export type ToastProps = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
+export type ToastProps = Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> & {
   open?: boolean
   onOpenChange?: (open: boolean) => void
   title?: React.ReactNode
@@ -15,15 +15,11 @@ export type ToastProps = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
 }
 
 export type ToastActionElement = React.ReactElement | null
-export function ToastViewport({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export function ToastViewport({ children }: { children: React.ReactNode }) {
   return (
     <div
       className={cn(
-        "pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4",
+        'pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-4',
       )}
       role="status"
       aria-live="polite"
@@ -54,8 +50,8 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
       <div
         ref={ref}
         className={cn(
-          "relative flex w-full items-start gap-3 rounded-md border border-border bg-background/95 px-4 py-3 shadow-lg backdrop-blur-md",
-          "text-sm text-foreground",
+          'relative flex w-full items-start gap-3 rounded-md border border-border bg-background/95 px-4 py-3 shadow-lg backdrop-blur-md',
+          'text-sm text-foreground',
           className,
         )}
         {...props}
@@ -88,7 +84,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
   },
 )
 
-Toast.displayName = "Toast"
+Toast.displayName = 'Toast'
 
 export function Toaster() {
   const { toasts } = useToast()
@@ -101,4 +97,3 @@ export function Toaster() {
     </ToastViewport>
   )
 }
-
