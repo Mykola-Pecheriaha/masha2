@@ -6,7 +6,7 @@ import { X } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { useToast } from "@/components/ui/use-toast"
 
-export type ToastProps = React.HTMLAttributes<HTMLDivElement> & {
+export type ToastProps = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
   open?: boolean
   onOpenChange?: (open: boolean) => void
   title?: React.ReactNode
