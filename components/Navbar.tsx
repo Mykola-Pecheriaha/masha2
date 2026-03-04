@@ -1,15 +1,17 @@
-"use client"
+'use client'
 
-import { useEffect, useState } from "react"
-import Link from "next/link"
-import { Mail, Menu, X } from "lucide-react"
+// cSpell:ignore astic nikolaipecheriaga
+
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { Mail, Menu, X } from 'lucide-react'
 
 const NAV_LINKS = [
-  { label: "About", href: "#about" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
-  { label: "Reviews", href: "#reviews" },
-  { label: "Contact", href: "#contact" },
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Portfolio', href: '#portfolio' },
+  { label: 'Reviews', href: '#reviews' },
+  { label: 'Contact', href: '#contact' },
 ]
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -38,16 +40,16 @@ export function Navbar() {
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20)
     onScroll()
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
   return (
     <header
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-background/95 backdrop-blur-md border-b border-border"
-          : "bg-transparent"
+          ? 'bg-background/95 backdrop-blur-md border-b border-border'
+          : 'bg-transparent'
       }`}
     >
       <div className="h-px w-full bg-accent/40" />
@@ -87,7 +89,7 @@ export function Navbar() {
             aria-label="Instagram — @nikolaipecheriaga"
             className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground/60 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105"
           >
-            <InstagramIcon className="h-[17px] w-[17px]" />
+            <InstagramIcon className="h-4.25 w-4.25" />
           </Link>
 
           <Link
@@ -95,7 +97,7 @@ export function Navbar() {
             aria-label="Send an email"
             className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground/60 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105"
           >
-            <Mail className="h-[17px] w-[17px]" />
+            <Mail className="h-4.25 w-4.25" />
           </Link>
 
           <Link
@@ -124,7 +126,7 @@ export function Navbar() {
             <Mail className="h-5 w-5" />
           </Link>
           <button
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             onClick={() => setIsMenuOpen((v) => !v)}
             className="flex h-8 w-8 items-center justify-center text-foreground transition-opacity hover:opacity-60"
           >
@@ -139,10 +141,13 @@ export function Navbar() {
 
       <div
         className={`overflow-hidden transition-all duration-300 ease-in-out lg:hidden ${
-          isMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+          isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         } bg-background/98 backdrop-blur-md`}
       >
-        <ul className="flex flex-col divide-y divide-border px-6 pb-4" role="list">
+        <ul
+          className="flex flex-col divide-y divide-border px-6 pb-4"
+          role="list"
+        >
           {NAV_LINKS.map((link) => (
             <li key={link.href}>
               <Link
@@ -168,4 +173,3 @@ export function Navbar() {
     </header>
   )
 }
-
