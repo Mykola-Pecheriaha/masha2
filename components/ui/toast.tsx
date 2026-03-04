@@ -14,10 +14,7 @@ export type ToastProps = Omit<React.HTMLAttributes<HTMLDivElement>, "title"> & {
   action?: ToastActionElement
 }
 
-export type ToastActionElement = React.ReactElement<
-  React.ButtonHTMLAttributes<HTMLButtonElement>
->
-
+export type ToastActionElement = React.ReactElement | null
 export function ToastViewport({
   children,
 }: {
