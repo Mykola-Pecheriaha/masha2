@@ -1,18 +1,17 @@
+'use client' // <-- обов'язково на самому верху файлу
+
 import * as React from 'react'
 
-export type Toast = {
+type Toast = {
   id: string
   title?: React.ReactNode
   description?: React.ReactNode
-  action?: React.ReactElement
   open?: boolean
-  onOpenChange?: (open: boolean) => void
 }
 
 type ToastContextValue = {
   toasts: Toast[]
-  push: (toast: Omit<Toast, 'id'>) => string
-  remove: (id: string) => void
+  addToast: (toast: Omit<Toast, 'id'>) => void
 }
 
 const ToastContext = React.createContext<ToastContextValue | undefined>(
@@ -22,35 +21,22 @@ const ToastContext = React.createContext<ToastContextValue | undefined>(
 export function ToastProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = React.useState<Toast[]>([])
 
-  const push = React.useCallback((toast: Omit<Toast, 'id'>) => {
-    const id =
-      typeof crypto !== 'undefined' && (crypto as any).randomUUID
-        ? (crypto as any).randomUUID()
-        : Date.now().toString()
-
+  const addToast = (toast: Omit<Toast, 'id'>) => {
+    const id = crypto.randomUUID()
     setToasts((prev) => [...prev, { ...toast, id }])
-    return id
-  }, [])
+  }
 
-  const remove = React.useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id))
-  }, [])
-
-  const value = React.useMemo(
-    () => ({ toasts, push, remove }),
-    [toasts, push, remove],
+  return (
+    <ToastContext.Provider value={{ toasts, addToast }}>
+      {children}
+    </ToastContext.Provider>
   )
-
-  return <ToastContext.Provider value={value}>{children}</ToastContext.Provider>
 }
 
 export function useToast() {
-  const ctx = React.useContext(ToastContext)
-  if (!ctx) {
-    // Provide a helpful runtime error if the provider is missing
-    throw new Error('useToast must be used within a ToastProvider')
+  const context = React.useContext(ToastContext)
+  if (!context) {
+    throw new Error('useToast must be used within ToastProvider')
   }
-  return ctx
+  return context
 }
-
-export default useToast
