@@ -4,8 +4,9 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Mail, Menu, X } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Container from './Container'
+import Socials from './ui/Socials'
 
 const NAV_LINKS = [
   { label: 'Про нас', href: '#about' },
@@ -14,25 +15,6 @@ const NAV_LINKS = [
   { label: 'Відгуки', href: '#reviews' },
   { label: 'Контакти', href: '#contact' },
 ]
-
-function InstagramIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-      aria-hidden="true"
-    >
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-      <circle cx="12" cy="12" r="4" />
-      <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none" />
-    </svg>
-  )
-}
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -87,23 +69,7 @@ export function Navbar() {
           </ul>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <Link
-              href="https://www.instagram.com/nikolaipecheriaga/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram — @nikolaipecheriaga"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground/60 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105"
-            >
-              <InstagramIcon className="h-4.25 w-4.25" />
-            </Link>
-
-            <Link
-              href="mailto:info@plasticp.com"
-              aria-label="Надіслати електронний лист"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-border text-foreground/60 transition-all duration-200 hover:border-accent hover:text-accent hover:scale-105"
-            >
-              <Mail className="h-4.25 w-4.25" />
-            </Link>
+            <Socials variant="desktop" />
 
             <Link
               href="#contact"
@@ -114,22 +80,7 @@ export function Navbar() {
           </div>
 
           <div className="flex items-center gap-3 lg:hidden">
-            <Link
-              href="https://www.instagram.com/nikolaipecheriaga/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-              className="flex h-8 w-8 items-center justify-center text-foreground/60 hover:text-accent transition-colors"
-            >
-              <InstagramIcon className="h-5 w-5" />
-            </Link>
-            <Link
-              href="mailto:info@plasticp.com"
-              aria-label="Електронна пошта"
-              className="flex h-8 w-8 items-center justify-center text-foreground/60 hover:text-accent transition-colors"
-            >
-              <Mail className="h-5 w-5" />
-            </Link>
+            <Socials variant="mobile" />
             <button
               aria-label={isMenuOpen ? 'Закрити меню' : 'Відкрити меню'}
               onClick={() => setIsMenuOpen((v) => !v)}

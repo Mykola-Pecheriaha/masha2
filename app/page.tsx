@@ -1,4 +1,5 @@
 import MasonryGrid from '../components/MasonryGrid'
+import Socials from '../components/ui/Socials'
 
 export default function Home() {
   return (
@@ -55,7 +56,12 @@ export default function Home() {
       {/* FOOTER */}
       <footer className="border-t py-10 text-sm text-gray-500">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <div>© {new Date().getFullYear()} PlasticP</div>
+          <div className="flex items-center gap-4">
+            <div>© {new Date().getFullYear()} PlasticP</div>
+
+            <Socials variant="footer" showAuthText />
+          </div>
+
           <div className="uppercase tracking-[0.18em] text-xs">
             Збудовано з Next.js + Tailwind
           </div>
