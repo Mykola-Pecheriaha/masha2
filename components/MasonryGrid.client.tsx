@@ -2,7 +2,6 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
-import Container from './Container'
 
 export type MasonryPhoto = {
   src: string
@@ -29,7 +28,7 @@ function PhotoCard({ photo, index }: { photo: MasonryPhoto; index: number }) {
           width={photo.width}
           height={photo.height}
           className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-          onLoad={() => setLoaded(true)}
+          onLoadingComplete={() => setLoaded(true)}
           priority={index < 3}
         />
       </div>
@@ -48,21 +47,12 @@ function PhotoCard({ photo, index }: { photo: MasonryPhoto; index: number }) {
 
 export default function MasonryGridClient({ photos }: Props) {
   return (
-    <section className="w-full py-16 bg-background" id="portfolio">
-      <Container narrow>
-        <h2 className="text-3xl font-semibold text-foreground mb-2 text-balance">
-          Фотогалерея
-        </h2>
-        <p className="text-muted-foreground mb-10 text-base leading-relaxed">
-          Моменти з операційної зали та медичної практики
-        </p>
-
-        <div className="masonry">
-          {photos.map((photo, i) => (
-            <PhotoCard key={`p-${i}`} photo={photo} index={i} />
-          ))}
-        </div>
-      </Container>
-    </section>
+    // Only render the grid itself; the surrounding section and headings are
+    // provided by the parent page to avoid duplicate ids and headings.
+    <div className="masonry">
+      {photos.map((photo, i) => (
+        <PhotoCard key={`p-${i}-${photo.src}`} photo={photo} index={i} />
+      ))}
+    </div>
   )
 }

@@ -1,4 +1,18 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# masha
+
+Next.js + Supabase project
+
+**Database migrations**
+**Database migrations**
+
+- **Run migrations:** Apply SQL migrations in the `supabase/migrations` folder with:
+
+```bash
+supabase db push
+```
+
+- **Seed data:** A seed migration is available at [supabase/migrations/20260307010100_seed_photos_metadata.sql](supabase/migrations/20260307010100_seed_photos_metadata.sql) — it inserts a few sample rows into the `photos_metadata` table.
+  This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
